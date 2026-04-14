@@ -7,18 +7,11 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
     $('.treat-button').bind({
       click:(clickedTreatButton)
     })
-    $('.play-button').bind(
-      {
+    $('.play-button').bind({
     click:(clickedPlayButton)
     })
     $('.exercise-button').bind({
       click:(clickedExerciseButton),
-      hover: function() {
-        while (true)
-        {
-          $(this).css('color', 'blue');
-        }
-      }
     })
     $('.toy-button').bind({
       click:(clickedGiveToy)
