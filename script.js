@@ -7,30 +7,36 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
     $('.treat-button').click(clickedTreatButton);
     $('.play-button').click(clickedPlayButton);
     $('.exercise-button').click(clickedExerciseButton);
-  
+    $('.toy-button').click(clickedGiveToy)
 
   
     
   })
   
     // Add a variable "pet_info" equal to a object with the name (string), weight (number), and happiness (number) of your pet
-    var pet_info = {name:"My Pet Name", weight:"??", happiness:"??"};
-  
+    var pet_info = {name:"My Pet Name", weight:10, happiness:5};
+
     function clickedTreatButton() {
-      // Increase pet happiness
-      // Increase pet weight
+      pet_info.happiness += 1;
+      pet_info.weight += 1;
       checkAndUpdatePetInfoInHtml();
     }
     
     function clickedPlayButton() {
-      // Increase pet happiness
-      // Decrease pet weight
+      pet_info.happiness += 1;
+      pet_info.weight -= 1;
       checkAndUpdatePetInfoInHtml();
     }
     
     function clickedExerciseButton() {
-      // Decrease pet happiness
-      // Decrease pet weight
+      pet_info.happiness -= 1;
+      pet_info.weight -= 1;
+      checkAndUpdatePetInfoInHtml();
+    }
+    function clickedGiveToy()
+    {
+      this.toys += 1
+      pet_info.happiness += 1;
       checkAndUpdatePetInfoInHtml();
     }
   
@@ -41,6 +47,15 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
     
     function checkWeightAndHappinessBeforeUpdating() {
       // Add conditional so if weight is lower than zero.
+      if (pet_info.weight <= 0)
+      {
+        pet_info.weight = 0
+        
+      }
+      if (pet_info.happiness <= 0)
+      {
+        pet_info.happiness = 0
+      }
     }
     
     // Updates your HTML with the current values in your pet_info object
@@ -48,5 +63,9 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       $('.name').text(pet_info['name']);
       $('.weight').text(pet_info['weight']);
       $('.happiness').text(pet_info['happiness']);
+      if (this.toys > 0)
+      {
+        $('.toys').text(pet_info['toys']);
+      }
     }
   
