@@ -4,17 +4,29 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
     checkAndUpdatePetInfoInHtml();
   
     // When each button is clicked, it will "call" function for that button (functions are below)
-    $('.treat-button').click(clickedTreatButton);
-    $('.play-button').click(clickedPlayButton);
-    $('.exercise-button').click(clickedExerciseButton);
-    $('.toy-button').click(clickedGiveToy)
-
-  
-    
+    $('.treat-button').bind({
+      click:(clickedTreatButton)
+    })
+    $('.play-button').bind(
+      {
+    click:(clickedPlayButton)
+    })
+    $('.exercise-button').bind({
+      click:(clickedExerciseButton),
+      hover: function() {
+        while (true)
+        {
+          $(this).css('color', 'blue');
+        }
+      }
+    })
+    $('.toy-button').bind({
+      click:(clickedGiveToy)
+    }) 
   })
   
     // Add a variable "pet_info" equal to a object with the name (string), weight (number), and happiness (number) of your pet
-    var pet_info = {name:"My Pet Name", weight:10, happiness:5};
+    var pet_info = {name:"My Pet Name", weight:10, happiness:5, toys:0};
 
     function clickedTreatButton() {
       pet_info.happiness += 1;
@@ -35,7 +47,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
     }
     function clickedGiveToy()
     {
-      this.toys += 1
+      pet_info.toys += 1;
       pet_info.happiness += 1;
       checkAndUpdatePetInfoInHtml();
     }
@@ -49,8 +61,12 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       // Add conditional so if weight is lower than zero.
       if (pet_info.weight <= 0)
       {
+        $('.exercise-button').add('.play-button').css('color', 'red');
         pet_info.weight = 0
-        
+      }
+      else
+      {
+        $('.exercise-button').add('.play-button').css('color', '#fafafa');
       }
       if (pet_info.happiness <= 0)
       {
@@ -63,9 +79,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       $('.name').text(pet_info['name']);
       $('.weight').text(pet_info['weight']);
       $('.happiness').text(pet_info['happiness']);
-      if (this.toys > 0)
-      {
-        $('.toys').text(pet_info['toys']);
-      }
+      $('.toys').text(pet_info.toys);
+      $('.toys-section').toggle(pet_info.toys > 0);
     }
   
