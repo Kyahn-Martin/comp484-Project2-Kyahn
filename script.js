@@ -74,13 +74,12 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       {
         // If the wight reaches zero, the pet dies and you can't interact with it
         $('#notification').text(pet_info.name + ' has died').fadeTo(0, 1).delay(2000)
-        $('.exercise-button').add('.play-button').css('color', 'red');
         pet_info.weight = 0;
         pet_info.happiness = 0;
-        $('.treat-button').unbind('click');
-        $('.exercise-button').unbind('click');
-        $('.play-button').unbind('click');
-        $('.toy-button').unbind('click');
+        // After the pet dies, change the color of the buttons to red and unbind the click function so you can't interact with it anymore
+        // More specifically the .add method allows you to add multiple selectors to the same jQuery object, so you can apply the same CSS and unbind methods to all of the buttons at once
+        $('.exercise-button').add('.play-button').add('.toy-button').add('.treat-button').css('color', 'red');
+        $('.treat-button').unbind('click').add('.exercise-button').add('.play-button').add('.toy-button').unbind('click');
         // Plays a sound effect when the pet dies
         $('#audio1')[0].play();
       }
