@@ -5,16 +5,20 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
     checkAndUpdatePetInfoInHtml();
   
     // When each button is clicked, it will "call" function for that button (functions are below)
-    $('.treat-button').bind({
+    $('.treat-button').bind
+    ({
       click:(clickedTreatButton)
     })
-    $('.play-button').bind({
+    $('.play-button').bind
+    ({
     click:(clickedPlayButton)
     })
-    $('.exercise-button').bind({
+    $('.exercise-button').bind
+    ({
       click:(clickedExerciseButton),
     })
-    $('.toy-button').bind({
+    $('.toy-button').bind
+    ({
       click:(clickedGiveToy)
     }) 
   })
@@ -22,21 +26,24 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
     // Add a variable "pet_info" equal to a object with the name (string), weight (number), and happiness (number) of your pet
     var pet_info = {name:"Fido", weight:10, happiness:5, toys:0};
 
-    function clickedTreatButton() {
+    function clickedTreatButton() 
+    {
       pet_info.happiness += 1;
       pet_info.weight += 1;
       $('#notification').text('You gave Fido a treat!').fadeTo(0, 1).delay(2000).fadeTo(1000, 0);
       checkAndUpdatePetInfoInHtml();
     }
     
-    function clickedPlayButton() {
+    function clickedPlayButton() 
+    {
       pet_info.happiness += 1;
       pet_info.weight -= 1;
       $('#notification').text('You played with Fido!').fadeTo(0, 1).delay(2000).fadeTo(1000, 0);
       checkAndUpdatePetInfoInHtml();
     }
     
-    function clickedExerciseButton() {
+    function clickedExerciseButton() 
+    {
       pet_info.happiness -= 1;
       pet_info.weight -= 1;
       $('#notification').text('You exercised with Fido!').fadeTo(0, 1).delay(2000).fadeTo(1000, 0);
@@ -59,16 +66,20 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       // Add conditional so if weight is lower than zero.
       if (pet_info.weight <= 0)
       {
+        $('#notification').text(pet_info.name + ' has died').fadeTo(0, 1).delay(2000)
         $('.exercise-button').add('.play-button').css('color', 'red');
-        pet_info.weight = 0
-      }
-      else
-      {
-        $('.exercise-button').add('.play-button').css('color', '#fafafa');
+        pet_info.weight = 0;
+        pet_info.happiness = 0;
+        $('.treat-button').unbind('click');
+        $('.exercise-button').unbind('click');
+        $('.play-button').unbind('click');
+        $('.toy-button').unbind('click');
+        $('#audio1')[0].play();
       }
       if (pet_info.happiness <= 0)
       {
-        pet_info.happiness = 0
+        $('#audio')[0].play();
+        pet_info.happiness = 0;
       }
     }
     
@@ -83,14 +94,14 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       
       if (pet_info.weight === 0) 
         {
-        $('.pet-image').attr('src', 'images/52-520446_skull-emoji.png');
+        $('.pet-image').attr('src', 'images/sdog.png');
         } 
       else if(pet_info.happiness === 0) 
         {
-        $('.pet-image').attr('src', 'images/download.jpg');
+        $('.pet-image').attr('src', 'images/sad_dog.jpg');
         }
         else {
-          $('.pet-image').attr('src', 'images/golden-retriever-tongue-out.jpg');
+          $('.pet-image').attr('src', 'images/happy_dog.jpg');
         }
       }
     

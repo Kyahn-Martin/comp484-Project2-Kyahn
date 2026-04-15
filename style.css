@@ -6,6 +6,11 @@
   body {
     font-family: helvetica, arial, sans-serif;
     margin: 25px;
+    background: url(images/grass.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
   
   main {
@@ -114,5 +119,8 @@
   .toy-button:hover {
     background-color: #2a3a4a;
   }
-
+  .pet-image{
+    width: 400px; 
+    height: 250px;
+  }
   
