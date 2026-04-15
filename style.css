@@ -48,6 +48,27 @@
   .pet-image {
     height:250px;
   }
+
+  #notification {
+    height: 40px;
+    opacity: 0;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition: opacity 0.5s;
+  }
+
+  #notification {
+    display: none;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
   
   .dashboard div {
     display:block;
