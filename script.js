@@ -1,10 +1,14 @@
 $(function() { // Makes sure that your function is called once all the DOM elements of the page are ready to be used.
     
     // Called function to update the name, happiness, and weight of our pet in our HTML
+    /* Call the notification element as empty to initialize it, allocating the space for it and preventing 
+    the page from jumping when the notification is called later on */
     $('#notification').text('').fadeTo(0, 1).delay(0).fadeTo(1000, 0);
     checkAndUpdatePetInfoInHtml();
   
     // When each button is clicked, it will "call" function for that button (functions are below)
+    /* Here i'm using the .bind() method to bind the click event instead of the .click() method
+    This would allow attatching multiple methods with one bind in the format "event:attatchment"*/
     $('.treat-button').bind
     ({
       click:(clickedTreatButton)
@@ -30,6 +34,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
     {
       pet_info.happiness += 1;
       pet_info.weight += 1;
+      // Add a notification that says "You gave Fido a treat!" that fades in and out using the .fadeTo() method
       $('#notification').text('You gave Fido a treat!').fadeTo(0, 1).delay(2000).fadeTo(1000, 0);
       checkAndUpdatePetInfoInHtml();
     }
@@ -38,6 +43,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
     {
       pet_info.happiness += 1;
       pet_info.weight -= 1;
+      // Each button click has its unique notification
       $('#notification').text('You played with Fido!').fadeTo(0, 1).delay(2000).fadeTo(1000, 0);
       checkAndUpdatePetInfoInHtml();
     }
@@ -66,6 +72,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       // Add conditional so if weight is lower than zero.
       if (pet_info.weight <= 0)
       {
+        // If the wight reaches zero, the pet dies and you can't interact with it
         $('#notification').text(pet_info.name + ' has died').fadeTo(0, 1).delay(2000)
         $('.exercise-button').add('.play-button').css('color', 'red');
         pet_info.weight = 0;
@@ -74,10 +81,12 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
         $('.exercise-button').unbind('click');
         $('.play-button').unbind('click');
         $('.toy-button').unbind('click');
+        // Plays a sound effect when the pet dies
         $('#audio1')[0].play();
       }
       if (pet_info.happiness <= 0)
       {
+        // Plays a sound effect when the pet becomes too sad
         $('#audio')[0].play();
         pet_info.happiness = 0;
       }
@@ -91,7 +100,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       $('.happiness').text(pet_info['happiness']);
       $('.toys').text(pet_info.toys);
       $('.toys-section').toggle(pet_info.toys > 0);
-      
+      // Depending on the weight and happiness of your pet, change the image to a happy dog, sad dog, or skeleton dog
       if (pet_info.weight === 0) 
         {
         $('.pet-image').attr('src', 'images/sdog.png');
